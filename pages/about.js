@@ -1,10 +1,12 @@
+import Layout from '../components/PropsLayout'
 import Link from 'next/link'
 import style from '../assets/style/switch.less'
 
 const List = () => (
-  <div>
+  <Layout>
+    <p>About</p>
     <div>
-      <Link href="/">index</Link>
+      <Link href="/"><a title="to index">Home</a></Link>
     </div>
     <section className="filter">
       <div className="filter-el">
@@ -19,7 +21,7 @@ const List = () => (
       </div>
     </section>
     <section className="content"></section>
-  </div>
+  </Layout>
 )
 
 export default List
