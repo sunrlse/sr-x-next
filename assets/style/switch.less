@@ -1,0 +1,41 @@
+label.switch {
+  @size: 20px;
+  @border-width: 2px;
+  display: inline-block;
+  width: (@size * 2.25 + @border-width * 2 + 4);
+  height: (@size + @border-width * 2 + 4);
+  background: hsl(0, 0%, 75%);
+  border: @border-width solid hsl(0, 0%, 65%);
+  border-radius: @size;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  
+  & > input[type="checkbox"] {
+     position: absolute;
+     top: -100%;
+     left: -100%;
+     z-index: -1;
+  }
+  
+  & > .dot {
+     display: block;
+     width: @size;
+     height: @size;
+     position: absolute;
+     top: 2px;
+     left: 2px;
+     border-radius: 50%;
+     background: hsl(100, 0%, 50%);
+     border: 2px solid fade(#fff, 50%);
+     box-sizing: border-box;
+     transition: linear .25s;
+     transition-property: background-color, transform;
+  }
+  
+  & > input:checked ~ .dot {
+     background: hsl(100, 75%, 75%);
+     transform: translateX(@size * 1.25 - 2);
+  }
+}
