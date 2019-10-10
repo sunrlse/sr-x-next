@@ -5,11 +5,16 @@ import fetch from 'isomorphic-unfetch'
 
 const extra = <span>Note: it will be ok</span>;
 
-const PostLink = props => (
+const posts = [
+  { id: 'hel', title: 'hello' },
+  { id: 'lea', title: 'learn' },
+  { id: 'dep', title: 'deploy' }
+]
+
+const PostLink = ({ item }) => (
   <li>
-    <Link href="/p/[id]" as={`/p/${props.id}`}> 
-      {/* 直接给href 完整的会走刷新跳转 */}
-      <a>{props.id}</a>
+    <Link href={`/post?title=${item.title}`}> 
+      <a>{item.title}</a>
     </Link>
   </li>
 )
@@ -18,10 +23,38 @@ const Blog = props => (
   <Layout extra={extra}>
     <p>Blog</p>
     <ul>
-      <PostLink id="hello-nextjs"></PostLink>
-      <PostLink id="learn-nextjs"></PostLink>
-      <PostLink id="deploy-nextjs"></PostLink>
+      {
+        posts.map((item, index) => (
+          <PostLink item={item} key={index}/>
+          // <li key={index}>
+          //   <Link href="/p/[id]" as={`/p/${item.id}`}> 
+          //     <a>{item.title}</a>
+          //   </Link>
+          // </li>
+          // style jsx 不会作用到 嵌套的子组件 PostLink 中
+        ))
+      }
     </ul>
+    <style jsx>{`
+      h3,
+      a {
+        font-family: 'Arial';
+      }
+      ul {
+        padding: 0;
+      }
+      li {
+        list-style: none;
+        margin: 5px 0;
+      }
+      a {
+        text-decoration: none;
+        color: blue;
+      }
+      a:hover {
+        opacity: 0.6;
+      }
+    `}</style>
     <h3>Batman TV Shows</h3>
     <ul>
       {props.tvShows.map((show, index) => (
