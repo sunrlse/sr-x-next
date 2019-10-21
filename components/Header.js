@@ -1,11 +1,19 @@
 import Link from 'next/link'
 
+const headerStyle = {
+  height: 50,
+  paddingLeft: 20,
+  display: "flex",
+  alignItems: "center",
+  background: "linear-gradient(45deg, #fddd66, transparent)"
+}
 const linkStyle = {
-  marginRight: 15
+  marginRight: 15,
+  color: "#0a3"
 }
 
 const Header = () => (
-  <div>
+  <div style={headerStyle}>
     <Link href="/">
       <a style={linkStyle}>Home</a>
     </Link>
