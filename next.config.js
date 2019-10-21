@@ -4,5 +4,5 @@ const withLess = require('@zeit/next-less')
 // ! 效果是  跳转页面  不跳转不报错，但是url 直接手动输入可以转到页面
 
 module.exports = withLess({
-  cssModules: true
+  cssModules: false
 })
