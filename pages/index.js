@@ -12,7 +12,7 @@ const posts = [
 ]
 
 const PostLink = ({ item }) => (
-  <li>
+  <li style={{listStyle: 'bengali inside'}}>
     <Link href={`/post?title=${item.title}`}> 
       <a>{item.title}</a>
     </Link>
@@ -31,7 +31,7 @@ const Blog = props => (
           //     <a>{item.title}</a>
           //   </Link>
           // </li>
-          // style jsx 不会作用到 嵌套的子组件 PostLink 中
+          // !  style jsx 不会作用到 嵌套的子组件 PostLink 中
         ))
       }
     </ul>
@@ -44,7 +44,7 @@ const Blog = props => (
         padding: 0;
       }
       li {
-        list-style: none;
+        list-style: none !important;
         margin: 5px 0;
       }
       a {
