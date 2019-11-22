@@ -11,7 +11,7 @@ const Video = props => {
       <h3>Video Cabin</h3>
       <h4>{props.video ? props.video.name : 'Sintel'}</h4>
       <section className="cabin">
-        <video src="/static/sintel.mp4" controls></video>
+        <video src="/sintel.mp4" controls></video>
         <video src="/static/est.mp4" controls></video>
       </section>
       <style jsx>{`
