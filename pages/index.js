@@ -1,7 +1,7 @@
 import Layout from '../components/PropsLayout'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
-
+import { useRouter } from 'next/router'
 
 const extra = <span>Note: it will be ok</span>;
 
@@ -19,54 +19,69 @@ const PostLink = ({ item }) => (
   </li>
 )
 
-const Blog = props => (
-  <Layout extra={extra}>
-    <p>Blog</p>
-    <ul>
-      {
-        posts.map((item, index) => (
-          <PostLink item={item} key={index}/>
-          // <li key={index}>
-          //   <Link href="/p/[id]" as={`/p/${item.id}`}> 
-          //     <a>{item.title}</a>
-          //   </Link>
-          // </li>
-          // !  style jsx 不会作用到 嵌套的子组件 PostLink 中
-        ))
-      }
-    </ul>
-    <style jsx>{`
-      h3,
-      a {
-        font-family: 'Arial';
-      }
-      ul {
-        padding: 0;
-      }
-      li {
-        list-style: none !important;
-        margin: 5px 0;
-      }
-      a {
-        text-decoration: none;
-        color: blue;
-      }
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
-    <h3>Batman TV Shows</h3>
-    <ul>
-      {props.tvShows.map((show, index) => (
-        <li key={index}>
-          <Link href="/p/[id]" as={`/p/${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </Layout>
-)
+const Blog = props => {
+  const router = useRouter()
+
+  function search(e) {
+    console.log(e.target.value)
+    let kw = e.target.value;
+    if (kw === 'video') {
+      router.push('/videos')
+    }
+  }
+
+  return (
+    <Layout extra={extra}>
+      <div>
+        <input placeholder="input dest" onBlur={search}/>
+      </div>
+      <p>Blog</p>
+      <ul>
+        {
+          posts.map((item, index) => (
+            <PostLink item={item} key={index}/>
+            // <li key={index}>
+            //   <Link href="/p/[id]" as={`/p/${item.id}`}> 
+            //     <a>{item.title}</a>
+            //   </Link>
+            // </li>
+            // !  style jsx 不会作用到 嵌套的子组件 PostLink 中
+          ))
+        }
+      </ul>
+      <style jsx>{`
+        h3,
+        a {
+          font-family: 'Arial';
+        }
+        ul {
+          padding: 0;
+        }
+        li {
+          list-style: none !important;
+          margin: 5px 0;
+        }
+        a {
+          text-decoration: none;
+          color: blue;
+        }
+        a:hover {
+          opacity: 0.6;
+        }
+      `}</style>
+      <h3>Batman TV Shows</h3>
+      <ul>
+        {props.tvShows.map((show, index) => (
+          <li key={index}>
+            <Link href="/p/[id]" as={`/p/${show.id}`}>
+              <a>{show.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Layout>
+  )
+}
 
 Blog.getInitialProps = async function() {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
