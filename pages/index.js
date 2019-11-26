@@ -22,11 +22,15 @@ const PostLink = ({ item }) => (
 const Blog = props => {
   const router = useRouter()
 
-  function search(e) {
+  async function search(e) {
     console.log(e.target.value)
     let kw = e.target.value;
     if (kw === 'video') {
       router.push('/videos')
+      // const res = await fetch('/v/12')
+      // console.log('---client---')
+      // console.log(res)
+      // console.log('---client---')
     }
   }
 

@@ -6,7 +6,7 @@ const resource = static(path.join(__dirname) + '/films');
 
 const next = require('next')
 
-// const routes = require('./routes/index')
+const video = require('./routes/video')
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -19,11 +19,14 @@ app.prepare().then(() => { // 需要等待pages目录下的所有页面被编译
   const server = new Koa()
 
   server.use(resource)
-
+  
+  
   server.use(async (ctx, next) => {
     await handle(ctx.req, ctx.res)
     ctx.respond = false
   })
+  server.use(video.routes())
+  // server.use(video.routes(), video.allowedMethods())
 
   server.listen(3003, () => {
     console.log('server is running at http://localhost:3003')
