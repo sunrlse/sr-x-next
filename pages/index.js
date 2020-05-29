@@ -36,6 +36,18 @@ const Blog = props => {
     }
   }
 
+  function wechat() {
+    // var qs = 'signature=5348f3f213b0a04e85da45662cb356b9ccc74618&nonce=abc123&timestamp=1590772649878&echostr=thankyou'
+    // var xhr = new XMLHttpRequest()
+    // xhr.open('get', `/api/wechat/check?${qs}`)
+    // xhr.onreadystatechange = function(res) {
+    //     if (xhr.readyState==4 &&xhr.status==200) {
+    //         console.log(xhr.responseText)
+    //     }
+    // }
+    // xhr.send()
+  }
+
   return (
     <Layout extra={extra}>
       <div className="ban">
@@ -68,7 +80,7 @@ const Blog = props => {
           {/* <div className="tear-left"></div>
           <div className="tear-right"></div> */}
         </div>
-        <div className="cloud cloud-2">
+        <div className="cloud cloud-2" onClick={wechat}>
           <div className="cloud-left"></div>
           <div className="cloud-right"></div>
           <div className="cloud-bottom"></div>

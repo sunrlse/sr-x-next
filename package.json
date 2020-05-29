@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "old-dev": "next --port=3003",
-    "dev": "node ./server.js",
+    "dev": "next --port=3003",
+    "devs": "node ./server.js NODE_ENV=dev",
+    "run": "node ./server.js NODE_ENV=production",
     "build": "next build",
     "start": "next start --port=3003"
   },
@@ -23,6 +24,7 @@
     "node-cmd": "^3.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-markdown": "^4.2.2"
+    "react-markdown": "^4.2.2",
+    "sha1": "^1.1.1"
   }
 }
