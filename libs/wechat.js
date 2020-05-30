@@ -23,12 +23,13 @@ function Wechat(opts) {
         return that.updateAccessToken()
       }
       if (that.isValidAccessToken(data)) {
-        Promise.resolve(data)
+        return Promise.resolve(data)
       } else {
         return that.updateAccessToken()
       }
     })
     .then(function(data) {
+      if (!data || !data.access_token || !data.expires_in) return
       that.access_token = data.access_token
       that.expires_in = data.expires_in
 
@@ -57,7 +58,7 @@ Wechat.prototype.updateAccessToken = function() {
       json: true
     })
     .then(function(res) {
-      let data = res.response.body
+      let data = res.body
       if (!data) return reject('error')
       let now = (new Date().getTime())
       // 提前20秒刷新

@@ -11,7 +11,7 @@ const config = {
     appSecret: '6a27f8ac3ede79569c8d020081ce4d73',
     token: 'qkadh123oqqewry224iasdfg233nl',
     getAccessToken: function() {
-      return utils.readFileAsync(wechat_file)
+      return utils.readFileAsync(wechat_file, 'utf-8')
     },
     saveAccessToken: function(data) {
       data = JSON.stringify(data)

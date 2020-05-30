@@ -11,6 +11,10 @@ module.exports = function(opts) {
   console.log('->>>>>>>>>>>>>>>>')
   const wechat = new Wechat(opts)
   return async (ctx, next) => {
+    console.log('--------------------------------')
+    console.log(ctx.method)
+    console.log('处理wechat请求')
+    console.log('--------------------------------')
     let token = config.wechat.token
     let method = ctx.method
     let qs = ctx.request.query
