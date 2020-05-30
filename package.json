@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next --port=3003",
-    "devs": "node ./server.js NODE_ENV=dev",
-    "run": "node ./server.js NODE_ENV=production",
+    "devs": "NODE_ENV=dev node ./server.js ",
+    "run": "NODE_ENV=production node ./server.js ",
     "build": "next build",
     "start": "next start --port=3003"
   },
@@ -23,6 +23,7 @@
     "less": "^2.7.3",
     "next": "^9.0.3",
     "node-cmd": "^3.0.0",
+    "raw-body": "^2.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-markdown": "^4.2.2",

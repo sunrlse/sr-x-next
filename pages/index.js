@@ -136,6 +136,7 @@ date: 2019-12-26 13:30:05
         .ban {
           position: relative;
           height: 400px;
+          overflow: hidden;
           background: linear-gradient(180deg, #3671ef, #f1f2f3);
         }
         ul {

@@ -10,6 +10,7 @@ const video = require('./routes/video')
 const wechat = require('./routes/wechat')
 
 const dev = process.env.NODE_ENV !== 'production'
+const port = process.env.PORT || 3003
 
 const app = next({dev})
 
@@ -33,8 +34,8 @@ app.prepare().then(() => { // 需要等待pages目录下的所有页面被编译
   server.use(wechat.routes())
   // server.use(video.routes(), video.allowedMethods())
 
-  server.listen(3003, () => {
-    console.log('server is running at http://localhost:3003')
+  server.listen(port, () => {
+    console.log(`server is running at http://localhost:${port}`)
   })
 
 })
