@@ -20,6 +20,6 @@ const config = {
   }
 }
 
-router.use(`${prefix}/wechat`, wechat(config.wechat))
+router.all(`${prefix}/wechat`, wechat(config.wechat))
 
 module.exports = router
