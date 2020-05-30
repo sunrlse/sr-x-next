@@ -9,7 +9,7 @@ const config = {
   wechat: {
     appID: 'wx59081954e1abaca4',
     appSecret: '6a27f8ac3ede79569c8d020081ce4d73',
-    token: 'qkadh123oqqewry224iasdfg233nl',
+    token: 'fgadh8A56D1o7V8N84OYyFiNSfRoiqe1',
     getAccessToken: function() {
       return utils.readFileAsync(wechat_file, 'utf-8')
     },
