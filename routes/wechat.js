@@ -2,7 +2,7 @@ const router = require('koa-router')()
 const path = require('path')
 const wechat = require('../middleware/wechat')
 const utils = require('../libs/utils')
-
+const getRawBody = require('raw-body')
 const prefix = '/api'
 const wechat_file = path.join(__dirname, '../config/wechat.txt')
 const config = {
