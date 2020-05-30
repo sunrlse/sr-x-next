@@ -14,7 +14,7 @@ const config = {
     getAccessToken: function() {
       return utils.readFileAsync(wechat_file)
     },
-    saveAcceessToken: function(data) {
+    saveAccessToken: function(data) {
       data = JSON.stringify(data)
       return utils.writeFileAsync(wechat_file, data)
     }
