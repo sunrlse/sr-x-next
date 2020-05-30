@@ -57,7 +57,7 @@ Wechat.prototype.updateAccessToken = function() {
       json: true
     })
     .then(function(res) {
-      let data = res.body
+      let data = res.response.body
       if (!data) return reject('error')
       let now = (new Date().getTime())
       // 提前20秒刷新
