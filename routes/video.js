@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 // const router = new Router();
 
-function handle(req, res) {
+function handle(ctx) {
   let filePath = path.resolve(__dirname, '../films/sintel.mp4');
   console.log(__dirname)
   console.log(filePath)
@@ -13,15 +13,18 @@ function handle(req, res) {
     console.log(data)
     let total = data.length
     console.log('-----read file-----')
-    // ctx.status = 206
-    res.setHeaders(206, {
-      // 'Content-Range': `bytes 0-${total}/${total}`,
-      'Accept-Ranges': 'bytes',
-      'Content-Length': total,
-      'Content-Type': 'video/mp4'
-    })
-    res.end(data, 'binary')
-    // ctx.body = data;
+    ctx.status = 206
+    ctx.set('Content-Type', 'video/mp4')
+    ctx.set('Content-Length', total)
+    ctx.set('Accept-Ranges', 'bytes')
+    // ctx.setHeaders(206, {
+    //   // 'Content-Range': `bytes 0-${total}/${total}`,
+    //   'Accept-Ranges': 'bytes',
+    //   'Content-Length': total,
+    //   'Content-Type': 'video/mp4'
+    // })
+    ctx.body = data
+    // res.end(data, 'binary')
   })
 }
 
@@ -29,7 +32,7 @@ const getVideo = async (ctx, next) => {
   let id = ctx.params.id
   
   
-  await handle(ctx.request, ctx.response)
+  await handle(ctx)
   // let videoStream = fs.createReadStream(filePath);
   // videoStream.on('open', (a, b) => {
   //   console.log('--------stream--------')
@@ -42,6 +45,16 @@ const getVideo = async (ctx, next) => {
   // ctx.response.body = file
 }
 
-router.get('/v/:id', getVideo)
+router.get('/api/v/:id', getVideo)
+
+// router.get('/api/we/chat', async (ctx, next) => {
+//   console.log('------------------------------------------------')
+//   console.log('jiedaole')
+//   let qs = ctx.request.query
+//   let { nonce } = qs
+//   console.log(qs)
+//   ctx.response.body = 'hhahahhah'
+//   console.log('------------------------------------------------')
+// })
 
 module.exports = router
