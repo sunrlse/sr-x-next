@@ -39,3 +39,5 @@ typings/
 sw.*
 
 .DS_Store
+
+config/wechat.txt
