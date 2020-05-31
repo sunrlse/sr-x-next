@@ -11,13 +11,13 @@ module.exports = function(opts, handler) {
   console.log('new middle wechat access')
   console.log('->>>>>>>>>>>>>>>>')
   const wechat = new Wechat(opts)
-  return async (ctx, next) => {
+  return function *(next) {
     console.log('--------------------------------')
-    console.log('处理wechat请求', ctx.method)
+    console.log('处理wechat请求', this.method)
     console.log('--------------------------------')
     let token = opts.token
-    let method = ctx.method
-    let qs = ctx.request.query
+    let method = this.method
+    let qs = this.request.query
     let { signature, nonce, timestamp, echostr } = qs
     let str = [token, timestamp, nonce].sort().join('')
     let sha = sha1(str)
@@ -25,13 +25,13 @@ module.exports = function(opts, handler) {
     switch(method) {
       case 'POST':
         if (!valid) return false
-        let xmlData = await getRawBody(ctx.req, {
-          length: ctx.length,
+        let xmlData = yield getRawBody(this.req, {
+          length: this.length,
           limit: '1mb',
-          encoding: ctx.charset
+          encoding: this.charset
         })
         console.log(xmlData)
-        let xmlObj = await utils.parseXMLAsync(xmlData)
+        let xmlObj = yield utils.parseXMLAsync(xmlData)
         let message = utils.formatMessage(xmlObj.xml)
         console.log(message)
         // if (message.MsgType === 'event') {
@@ -51,13 +51,13 @@ module.exports = function(opts, handler) {
         //     ctx.body = reply
         //   }
         // }
-        ctx.weixinMsg = message
-        await handler.call(ctx, next)
-        wechat.reply.call(ctx)
+        this.weixinMsg = message
+        yield handler.call(this, next)
+        wechat.reply.call(this)
         break
       case 'GET':
       default:
-        ctx.body = valid ? (echostr + '') : 'failed'
+        this.body = valid ? (echostr + '') : 'failed'
     }
   }
 }

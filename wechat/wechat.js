@@ -71,13 +71,13 @@ Wechat.prototype.updateAccessToken = function() {
   })
 }
 
-Wechat.prototype.replay = function() {
+Wechat.prototype.reply = function() {
   let content = this.body
-  let message = this.weixin
+  let message = this.weixinMsg
 
   let xml = info2xml(content, message)
   this.status = 200
-  this.type = 'appliation/xml'
+  this.type = 'application/xml'
   this.body = xml
 }
 
