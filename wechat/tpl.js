@@ -5,8 +5,8 @@ const heredoc = require('heredoc')
 
 const template = heredoc(function() {/*
   <xml>
-    <ToUserName><![CDATA[<%= message.FromUserName %>]]></ToUserName>
-    <FromUserName><![CDATA[<%= message.ToUserName %>]]></FromUserName>
+    <ToUserName><![CDATA[<%= fromUserName %>]]></ToUserName>
+    <FromUserName><![CDATA[<%= toUserName %>]]></FromUserName>
     <CreateTime><% createTime %></CreateTime>
     <MsgType><![CDATA[<%= msgType %>]]></MsgType>
     <% if (msgType === 'text') { %>

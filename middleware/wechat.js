@@ -52,7 +52,7 @@ module.exports = function(opts, handler) {
         //   }
         // }
         ctx.weixinMsg = message
-        await handler.call(ctx, ctx, next)
+        await handler.call(ctx)
         console.log(ctx)
         wechat.reply.call(ctx, ctx)
         break

@@ -71,14 +71,14 @@ Wechat.prototype.updateAccessToken = function() {
   })
 }
 
-Wechat.prototype.reply = function() {
-  let content = this.body
-  let message = this.weixinMsg
+Wechat.prototype.reply = function(ctx) {
+  let content = ctx.weixinContent
+  let message = ctx.weixinMsg
 
   let xml = info2xml(content, message)
-  this.status = 200
-  this.type = 'application/xml'
-  this.body = xml
+  ctx.status = 200
+  ctx.type = 'application/xml'
+  ctx.body = xml
 }
 
 module.exports = Wechat

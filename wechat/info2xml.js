@@ -2,7 +2,7 @@
 
 const tpl = require('./tpl')
 
-exports.info2xml = function(content, message) {
+const info2xml = function(content, message) {
   let info = {}
   let type = 'text'
   let fromUserName = message.FromUserName
@@ -19,3 +19,5 @@ exports.info2xml = function(content, message) {
 
   return tpl.compiled(info)
 }
+
+module.exports = info2xml
